@@ -1,12 +1,12 @@
-﻿// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// В итоге получается вот такой массив:
-// 7 4 2 1
-// 9 5 3 2
-// 8 4 4 2
+﻿// Задача 57: Составить частотный словарь элементов двумерного массива. Частотный словарь содержит информацию о том, сколько раз встречается элемент входных данных.
+// 1, 2, 3
+// 4, 6, 1
+// 2, 1, 6
+// 1 встречается 3 раза
+// 2 встречается 2 раз
+// 3 встречается 1 раз
+// 4 встречается 1 раз
+// 6 встречается 2 раза
 
 int[,] FillArray()
 {
@@ -35,31 +35,47 @@ void PrintArray(int[,] Array)
     }
 }
 
-void SortRowsArray(int[,] Array)
+void CheckCountNum(int[,] Array)
 {
-    for (int i = 0; i < Array.GetLength(0); i++)
+    int[] arr = new int[Array.GetLength(0) * Array.GetLength(1)];
+    for (int n = 0; n < Array.GetLength(0) * Array.GetLength(1); n++)
     {
-        for (int j = 0; j < Array.GetLength(1); j++)
+        for (int i = 0; i < Array.GetLength(0); i++)
         {
-            int temp = 0;
-            for (int k = 0; k < Array.GetLength(1) - 1; k++)
+            for (int j = 0; j < Array.GetLength(1); j++)
             {
-                if (Array[i, k] < Array[i, k + 1])
-                {
-                    temp = Array[i, k];
-                    Array[i, k] = Array[i, k + 1];
-                    Array[i, k + 1] = temp;
-                }
+                arr[n] = Array[i, j];
+                n++;
             }
+        }
+    }
+    int[] countArr = new int[10];
+    foreach (int num in arr)
+    {
+        countArr[num]++;
+    }
+
+    for (int i = 0; i < countArr.Length; i++)
+    {
+        if (countArr[i] > 0)
+        {
+            Console.WriteLine($"{i} встречается {countArr[i]} раз(а)");
         }
     }
 }
 
 int[,] Array = FillArray();
 PrintArray(Array);
-SortRowsArray(Array);
 System.Console.WriteLine();
-PrintArray(Array);
+CheckCountNum(Array);
+
+
+
+
+
+
+
+
 
 
 
