@@ -1,12 +1,10 @@
-﻿// Задача 57: Составить частотный словарь элементов двумерного массива. Частотный словарь содержит информацию о том, сколько раз встречается элемент входных данных.
-// 1, 2, 3
-// 4, 6, 1
-// 2, 1, 6
-// 1 встречается 3 раза
-// 2 встречается 2 раз
-// 3 встречается 1 раз
-// 4 встречается 1 раз
-// 6 встречается 2 раза
+﻿// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
 
 int[,] FillArray()
 {
@@ -35,39 +33,48 @@ void PrintArray(int[,] Array)
     }
 }
 
-void CheckCountNum(int[,] Array)
-{
-    int[] arr = new int[Array.GetLength(0) * Array.GetLength(1)];
-    for (int n = 0; n < Array.GetLength(0) * Array.GetLength(1); n++)
-    {
-        for (int i = 0; i < Array.GetLength(0); i++)
-        {
-            for (int j = 0; j < Array.GetLength(1); j++)
-            {
-                arr[n] = Array[i, j];
-                n++;
-            }
-        }
-    }
-    int[] countArr = new int[10];
-    foreach (int num in arr)
-    {
-        countArr[num]++;
-    }
 
-    for (int i = 0; i < countArr.Length; i++)
+void MultiplyArrays(int[,] arr1, int[,] arr2)
+{
+    while (true)
     {
-        if (countArr[i] > 0)
+        if (arr1.GetLength(0) == arr2.GetLength(1))
         {
-            Console.WriteLine($"{i} встречается {countArr[i]} раз(а)");
+            int[,] arr3 = new int[arr1.GetLength(0), arr2.GetLength(1)];
+            for (int i = 0; i < arr1.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr2.GetLength(1); j++)
+                {
+                    arr3[i, j] = 0;
+                    for (int k = 0; k < arr1.GetLength(1); k++)
+                    {
+                        arr3[i, j] += arr1[i, k] * arr2[k, j];
+                    }
+                }
+            }
+            System.Console.WriteLine();
+            PrintArray(arr3);
+            break;
+        }
+        else
+        {
+            System.Console.WriteLine("Введены неверные размеры матриц!!!");
+            break;
         }
     }
 }
 
-int[,] Array = FillArray();
-PrintArray(Array);
+int[,] arr1 = FillArray();
+PrintArray(arr1);
 System.Console.WriteLine();
-CheckCountNum(Array);
+int[,] arr2 = FillArray();
+PrintArray(arr2);
+System.Console.WriteLine();
+MultiplyArrays(arr1, arr2);
+
+
+
+
 
 
 
