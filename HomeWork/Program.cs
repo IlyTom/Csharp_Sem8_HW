@@ -21,10 +21,7 @@ int[,,] FillArray()
     int[] arr = new int[m * n * l];
     for (int i = 0; i < m * n * l; i++)
     {
-        if (m*n*l<=90) break;
-        int num;
         arr[i] = rand();
-        num = arr[i];
         if (i >= 1)
         {
             for (int j = 0; j < i; j++)
@@ -33,9 +30,7 @@ int[,,] FillArray()
                 {
                     arr[i] = rand();
                     j = 0;
-                    num = arr[i];
                 }
-                num = arr[i];
             }
         }
     }
@@ -54,9 +49,6 @@ int[,,] FillArray()
     }
     return Array;
 }
-
-
-
 
 void PrintArray(int[,,] Array)
 {
